@@ -1,0 +1,52 @@
+<mat-card>
+  <mat-form-field color="warn">
+    <mat-label> Name</mat-label>
+    <input matInput [(ngModel)] = "name">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field color="warn">
+    <mat-label> Surname</mat-label>
+    <input matInput [(ngModel)] = "surname">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field color="warn">
+    <mat-label> Username</mat-label>
+    <input matInput [(ngModel)] = "username">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field color="warn">
+    <mat-label> Password</mat-label>
+    <input matInput [(ngModel)] = "password">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field color="warn">
+    <mat-label> E-mail</mat-label>
+    <input matInput [(ngModel)] = "email">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field color="warn">
+    <mat-label> State</mat-label>
+    <input matInput [(ngModel)] = "state">
+  </mat-form-field>
+
+  <br>
+  <mat-form-field color="warn">
+    <mat-label> Town</mat-label>
+    <input matInput [(ngModel)] = "town">
+  </mat-form-field>
+
+  <br>
+  <form class="center">
+    <button mat-raised-button color="warn" style="margin-right: 20px;" (click)="back()">
+      Back
+    </button>
+    <button mat-raised-button color="warn" style="margin-left: 20px;" (click)="save()">
+      Save
+    </button>
+  </form>
+</mat-card>

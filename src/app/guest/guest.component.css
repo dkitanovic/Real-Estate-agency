@@ -1,0 +1,39 @@
+mat-form-field{
+  margin-left: 5px;
+}
+
+.first{
+  margin-left: 35.5%;
+}
+
+button{
+  margin: 5px;
+}
+
+.example-card {
+  margin-left: 5%;
+  margin-top: 5%;
+  width: 300px;
+  float: left;
+}
+
+.example-card img{
+  height: 300px;
+  object-fit: contain;
+}
+
+gallery{
+  background-color: white;
+  height: 400px;
+  margin-top: 20px;
+}
+
+p{
+  font-size: 110%;
+}
+strong{
+  font-size: 110%;
+}
+
+
+

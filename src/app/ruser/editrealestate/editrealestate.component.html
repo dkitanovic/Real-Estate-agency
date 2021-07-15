@@ -1,0 +1,141 @@
+<form (submit)="editRealEstate()" >
+  <mat-card>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Name (description) </mat-label>
+      <input
+
+        matInput
+        name="name"
+        [(ngModel)]="this.realEstate.name"
+        #nameInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Town </mat-label>
+      <input
+
+        matInput
+        name="town"
+        [(ngModel)]="this.realEstate.town"
+        #townInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Address </mat-label>
+      <input
+
+        matInput
+        name="address"
+        [(ngModel)]="this.realEstate.address"
+        #addressInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Township </mat-label>
+      <input
+
+        matInput
+        name="township"
+        [(ngModel)]="this.realEstate.township"
+        #townshipInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-radio-group  name="type" [(ngModel)]="this.realEstate.type" #typeInput="ngModel" color="warn" class="radio1">
+      <mat-radio-button value="House">house </mat-radio-button>
+      <mat-radio-button value="Apartment">apartment</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Floor </mat-label>
+      <input
+
+        matInput
+        name="floor"
+        [(ngModel)]="this.realEstate.floor"
+        #floorInput="ngModel">
+    </mat-form-field>
+
+    <br *ngIf="isSelected(type)">
+    <mat-form-field color="warn" class="centered" *ngIf="isSelected(type)">
+      <mat-label> Maximum floor </mat-label>
+      <input
+
+        matInput
+        name="maximumFloor"
+        [(ngModel)]="this.realEstate.maximumFloor"
+        #maximumFloorInput="ngModel">
+
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Area </mat-label>
+      <input
+
+        matInput
+        name="area"
+        [(ngModel)]="this.realEstate.area"
+        #areaInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Rooms </mat-label>
+      <input
+        matInput
+        name="rooms"
+        [(ngModel)]="this.realEstate.rooms"
+        #roomsInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Price </mat-label>
+      <input
+        matInput
+        name="price"
+        [(ngModel)]="this.realEstate.price"
+        #priceInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-radio-group  name="furnished" [(ngModel)]="this.realEstate.furnished" #furnishedInput="ngModel" color="warn" class="radio2">
+      Furnished: <br><br>
+      <mat-radio-button value="yes">Yes </mat-radio-button>
+      <mat-radio-button value="no">No</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-radio-group  name="owner" [(ngModel)]="this.realEstate.owner" #ownerInput="ngModel" color="warn" class="radio2">
+      Owner: <br><br>
+      <mat-radio-button value="agency">Agency </mat-radio-button>
+      <mat-radio-button value="agent">Agent</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-radio-group  name="RentOrSell" [(ngModel)]="this.realEstate.RentOrSell" #RentOrSellInput="ngModel" color="warn" class="radio2">
+      <mat-radio-button value="Rent">Rent </mat-radio-button>
+      <mat-radio-button value="Sell">Sell</mat-radio-button>
+    </mat-radio-group>
+
+  </mat-card>
+
+  <button
+    mat-raised-button
+    color="warn"
+    type="submit"
+    class="button"
+  >
+    Update
+  </button>
+
+  </form>
+
+
+
+

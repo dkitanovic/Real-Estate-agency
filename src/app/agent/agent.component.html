@@ -1,0 +1,365 @@
+
+<mat-drawer-container class="example-container">
+
+  <mat-drawer mode="side" position="end" opened>
+    <div class="imagePreview">
+      <img [src]="user.imagePath">
+    </div>
+
+    <div class="center">
+      <p>
+        <a style="color: red"> Name: </a> {{user.name}}
+      </p>
+      <p>
+        <a style="color: red"> Surname: </a> {{user.surname}}
+      </p>
+      <p>
+        <a style="color: red"> Username: </a> {{user.username}}
+      </p>
+      <p>
+        <a style="color: red"> State: </a> {{user.state}}
+      </p>
+      <p>
+        <a style="color: red"> Town: </a> {{user.town}}
+      </p>
+      <p>
+        <a style="color: red"> Email: </a> {{user.email}}
+      </p>
+    </div>
+
+
+    <div class="buttons">
+      <button mat-raised-button color="warn" (click)="add_real_estate()" class="right_button">
+        Add real estate
+      </button>
+      <button mat-raised-button color="warn" (click)="show_real_estate_requests()" class="right_button">
+        Real Estate requests
+      </button>
+      <button mat-raised-button color="warn" (click)="show_real_estates()" class="right_button">
+        All Real Estates
+      </button>
+      <button mat-raised-button color="warn" (click)="show_promoted_estates()" class="right_button">
+        Promoted Estates
+      </button>
+      <button mat-raised-button color="warn" (click)="accepted_offers()" class="right_button">
+        Aceppted offers
+      </button>
+      <button mat-raised-button color="warn" (click)="confirmed_offers()" class="right_button">
+        Sells
+      </button>
+      <button mat-raised-button color="warn" (click)="statistic()" class="right_button">
+        Statistic
+      </button>
+      <button mat-raised-button color="warn" (click)="showChat()" class="right_button">
+        Chat
+      </button>
+
+      <button mat-raised-button color="warn" class="right_button" (click)="logout()">
+        Log out
+      </button>
+      <br>
+
+    </div>
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div *ngIf="this.request_realEstates != null && requests_Real_Estate==true">
+      <div *ngFor="let realEstate of this.request_realEstates">
+        <mat-card class="example-card" (click)="openRealEstate(realEstate)">
+          <img mat-card-image src={{realEstate.images[0]}} alt="Photo of Real Estate">
+          <mat-card-content>
+            <strong>
+              {{realEstate.type}}
+            </strong>
+            <p>
+              Town: {{realEstate.town}}
+            </p>
+            <p>
+              Township: {{realEstate.township}}
+            </p>
+            Price:
+            <strong>
+               {{realEstate.price}} &euro;
+            </strong>
+            <p>
+              Room number: {{realEstate.rooms}}
+            </p>
+            <p>
+              {{realEstate.RentOrSell}}
+            </p>
+            <button mat-raised-button color="warn" (click)="acceptRealEstate(realEstate)">
+              Accept
+            </button>
+
+            <button mat-raised-button color="warn" (click)="deleteRealEstate(RealEstate)">
+              Decline
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="this.all_realEstates != null && all_Real_Estates==true">
+      <div *ngFor="let realEstate of this.all_realEstates">
+        <mat-card class="example-card" (click)="openRealEstate(realEstate)">
+          <img mat-card-image src={{realEstate.images[0]}} alt="Photo of Real Estate">
+          <mat-card-content>
+            <strong>
+              {{realEstate.type}}
+            </strong>
+            <p>
+              Town: {{realEstate.town}}
+            </p>
+            <p>
+              Township: {{realEstate.township}}
+            </p>
+            Price:
+            <strong>
+               {{realEstate.price}} &euro;
+            </strong>
+            <p>
+              Room number: {{realEstate.rooms}}
+            </p>
+            <p>
+              {{realEstate.RentOrSell}}
+            </p>
+            <button mat-raised-button color="warn" (click)="promoteRealEstate(realEstate)">
+              Promote
+            </button>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="this.promoted_realEstates != null && promoted_Real_Estates==true">
+      <div *ngFor="let realEstate of this.promoted_realEstates">
+        <mat-card class="example-card" (click)="openRealEstate(realEstate)">
+          <img mat-card-image src={{realEstate.images[0]}} alt="Photo of Real Estate">
+          <mat-card-content>
+            <strong>
+              {{realEstate.type}}
+            </strong>
+            <p>
+              Town: {{realEstate.town}}
+            </p>
+            <p>
+              Township: {{realEstate.township}}
+            </p>
+            Price:
+            <strong>
+               {{realEstate.price}} &euro;
+            </strong>
+            <p>
+              Room number: {{realEstate.rooms}}
+            </p>
+            <p>
+              {{realEstate.RentOrSell}}
+            </p>
+            <button mat-raised-button color="warn" (click)="unpromoteRealEstate(realEstate)">
+              Unpromote
+            </button>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="this.acceptedOffers != null && this.show_accepted_offers==true">
+      <div *ngFor="let offer of this.acceptedOffers">
+        <mat-card class="example-card">
+          <img mat-card-image src={{offer.buyerImage}} alt="Photo of buyer">
+          <mat-card-content>
+            <p>
+              Name:
+              <strong>
+                {{offer.name}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Owner username:
+              <strong>
+                {{offer.usernameOwner}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Buyer username:
+              <strong>
+                {{offer.usernameBuyer}}
+              </strong>
+              <br>
+            </p>
+            <button mat-raised-button color="warn" (click)="confirmOffer(offer)">
+              Confirm
+            </button>
+            <br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="this.confirmedOffers != null && this.show_confirmed_offers==true">
+      <div *ngFor="let offer of this.confirmedOffers">
+        <mat-card class="example-card">
+          <img mat-card-image src={{offer.buyerImage}} alt="Photo of buyer">
+          <mat-card-content>
+            <p>
+              Name:
+              <strong>
+                {{offer.name}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Owner username:
+              <strong>
+                {{offer.usernameOwner}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Buyer username:
+              <strong>
+                {{offer.usernameBuyer}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Price:
+              <strong>
+                {{offer.price}}
+              </strong>
+              <br>
+            </p>
+            <br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="show_charts==true">
+      <div id="divChart">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <div id="divChart">
+        <canvas id="myChart1"></canvas>
+      </div>
+
+      <div id="divChart">
+        <canvas id="myChart2"></canvas>
+      </div>
+
+      <div id="divChart">
+        <canvas id="myChart3"></canvas>
+      </div>
+    </div>
+
+    <app-admin-add_realestate *ngIf="add_Real_Estate==true"></app-admin-add_realestate>
+
+    <div *ngIf="this.chat==true" class="content" role="main">
+
+      <div class="container">
+        <h3 class=" text-center">Messages</h3>
+        <div class="messaging">
+          <div class="inbox_msg">
+            <div class="inbox_people">
+              <div class="headind_srch">
+                <div class="channel_heading">
+                  <h4 (click)="showConversations()">Conversations</h4>
+                  <h4 style="margin-left: 222px" (click)="showArhive()">Archive</h4>
+                </div>
+              </div>
+              <div class="inbox_chat">
+                <div class="channels" *ngFor="let channel of channelList; index as i" >
+                  <div class="chat_list" *ngIf="didIArchivedHim(channel.usernameFrom)==this.show_archive">
+                    <div class="chat_people">
+                      <div class="chat_ib">
+                        <h5 (click)="showConversation(i)">
+                          {{ channel.usernameFrom }}
+                        </h5>
+                        <p *ngIf="channel.messages[channel.messages.length-1].usernameTo!='agency' || channel.messages[channel.messages.length-1].read==true">
+                          {{
+                           channel.messages[channel.messages.length-1].name
+                          }}
+                        </p>
+                        <strong *ngIf="channel.messages[channel.messages.length-1].usernameTo=='agency' && channel.messages[channel.messages.length-1].read==false">
+                          {{
+                           channel.messages[channel.messages.length-1].name
+                          }}
+                        </strong>
+                        <div *ngIf="this.didIBlockedHim(channel.usernameFrom)==true">
+                          <button mat-raised-button color="warn" (click)="Unblock(channel.usernameFrom)"> Unblock</button>
+                        </div>
+                        <button mat-raised-button color="warn" style="margin-top:5px" *ngIf="didIArchivedHim(channel.usernameFrom)==false && this.didIBlockedHim(channel.usernameFrom)==false" (click)="archive(channel.usernameFrom)">
+                          Archive
+                        </button>
+                        <button mat-raised-button color="warn" style="margin-top:5px" *ngIf="didIArchivedHim(channel.usernameFrom)==true && this.didIBlockedHim(channel.usernameFrom)==false" (click)="dearchive(channel.usernameFrom)">
+                          Dearchive
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mesgs">
+              <div class="msg_history" *ngIf="index!=-1">
+                <strong> {{this.channelList[index].usernameFrom}}</strong>
+                <div *ngIf="this.isMyRealEstate(this.channelList[index].messages[0].name)==false && this.didHeOffered(this.channelList[index].messages[0].name, this.user.username)==false && didHeBlockedMe(this.channelList[index].usernameFrom)==false">
+                  <button mat-raised-button color="warn" (click)="giveOffer(this.channelList[index].messages[0].name,this.channelList[index].usernameFrom)"> Send offer</button>
+                </div>
+                <div *ngIf="this.didIBlockedHim(this.channelList[index].usernameFrom)==false">
+                  <button mat-raised-button color="warn" (click)="Block(this.channelList[index].usernameFrom)"> Block</button>
+                </div>
+                <div *ngIf="this.isMyRealEstate(this.channelList[index].messages[0].name)==true && didHeOffered(this.channelList[index].messages[0].name, this.channelList[index].usernameFrom) && didIBlockedHim(this.channelList[index].usernameFrom)==false">
+                  <button mat-raised-button color="warn" (click)="this.acceptOffer(this.channelList[index].messages[0].name,this.channelList[index].usernameFrom)"> Accept offer</button>
+                </div>
+                <li class="message" *ngFor="let message of channelList[index].messages">
+
+                    <div class="incoming_msg" *ngIf="message.usernameFrom != 'agency'">
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>{{ message.text }}</p>
+                        </div>
+                        <p class="receive_date">{{ this.niceDate(message.date)}} </p>
+                      </div>
+                    </div>
+
+                  <!--><ng-template #outgoing_msg> <-->
+                    <div class="outgoing_msg" *ngIf="message.usernameFrom == 'agency'">
+                      <strong class="sent_agent"> {{message.agent}}</strong>
+                      <div class="sent_msg">
+                        <p>{{ message.text }}</p>
+                      </div>
+                      <p class="sent_date"> {{this.niceDate(message.date)}}  </p>
+                    </div>
+                  <!--></ng-template><-->
+                </li>
+              </div>
+              <div class="type_msg" *ngIf="index!=-1 && didHeBlockedMe(channelList[index].usernameFrom)==false">
+                <form class="input_msg_write" (ngSubmit)="sendMessage(channelList[index].messages[0].name, channelList[index].usernameFrom)">
+                  <input
+                    type="text"
+                    class="write_msg"
+                    placeholder="Type a message"
+                    name="newMessage"
+                    [(ngModel)]="newMessage"
+                  />
+                  <button class="msg_send_btn" type="submit">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>

@@ -1,0 +1,39 @@
+mat-card{
+  display: block;
+  width: 40%;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.login{
+  display: block;
+  width: 10%;
+  height: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
+.down{
+  margin-top: 2%;
+}
+
+.centered{
+  left: 37%;
+}
+
+.center{
+  margin:0 auto;
+  display: table;
+}
+
+
+
+
+
+
+
+
+

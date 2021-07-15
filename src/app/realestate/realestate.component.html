@@ -1,0 +1,80 @@
+<div class="basic-container">
+	<gallery id="basic-test" fluid [items]="this.items"></gallery>
+</div>
+<br>
+
+<mat-card class="center">
+
+  <mat-card-content>
+    <strong>
+      {{realEstate.type}}
+    </strong>
+    <p>
+      Town: {{realEstate.town}}
+    </p>
+    <p>
+      Township: {{realEstate.township}}
+    </p>
+    <p>
+      Address: {{realEstate.address}}
+    </p>
+    <p>
+      Area: {{realEstate.area}}
+    </p>
+    <p>
+      Floor: {{realEstate.floor}}
+    </p>
+    <p>
+      Maximum floor: {{realEstate.maximumFloor}}
+    </p>
+    <p>
+      Furnished : {{realEstate.furnished}}
+    </p>
+    Price:
+    <strong>
+       {{realEstate.price}} &euro;
+    </strong>
+    <p>
+      Room number: {{realEstate.rooms}}
+    </p>
+    <p>
+      Owner: {{realEstate.owner}}
+    </p>
+    <p>
+      {{realEstate.RentOrSell}}
+    </p>
+    <div *ngIf="this.realEstate.RentOrSell=='Sell'" class="center">
+      Payment method
+      <br><br>
+      <mat-radio-group  name="type" [(ngModel)]="paymentMethod" #paymentMethodInput="ngModel" color="warn" class="radio1">
+        <mat-radio-button value="Cash">Cash </mat-radio-button>
+        <mat-radio-button value="Credit">Credit </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <br>
+    <div *ngIf="this.paymentMethod=='Credit'" class="center">
+      Ucesce iznosi {{this.realEstate.price*0.2}}
+    </div>
+
+  </mat-card-content>
+
+  <button mat-raised-button (click)="openForm()" color="warn">Chat</button>
+  <div class="chat-popup" id="myForm">
+    <form (submit)="sendMessage()" class="form-container">
+      <h1>Chat</h1>
+
+      <label for="msg"><b>{{realEstate.name}}</b></label>
+      <textarea placeholder="Type message.." name="msg" required [(ngModel)]="message"></textarea>
+      <strong *ngIf="this.service.getRUser().didHeBlockedMe(realEstate.owner)==true || this.service.getRUser().didIBlockedHim(realEstate.owner)==true"> You can't send message</strong>
+      <button *ngIf="this.service.getRUser().didHeBlockedMe(realEstate.owner)==false && this.service.getRUser().didIBlockedHim(realEstate.owner)==false" type="submit" class="btn">Send</button>
+      <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
+    </form>
+  </div>
+
+</mat-card>
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+mat-card{
+  display: block;
+  width: 40%;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.button{
+  display: block;
+  width: 10%;
+  height: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
+.centered{
+  left: 37%;
+}
+
+input[type="file"]{
+  visibility: hidden;
+}
+
+.imagePreview{
+  height: 30px;
+  margin: 5npx 0;
+}
+
+.imagePreview img{
+  height: 100%;
+}
+
+

@@ -1,0 +1,85 @@
+<div class="basic-container">
+	<gallery id="basic-test" fluid [items]="this.items"></gallery>
+</div>
+
+
+
+<form (submit)="search(searchForm)" #searchForm="ngForm">
+<mat-card>
+<mat-form-field color="warn" class="first">
+  <mat-label> Town </mat-label>
+  <input
+    matInput
+    name="town"
+    ngModel
+    #townInput="ngModel"
+  >
+</mat-form-field>
+
+<mat-form-field color="warn">
+  <mat-label> Price min </mat-label>
+  <input
+    matInput
+    name="priceFrom"
+    ngModel
+    #pricefromInput="ngModel"
+  >
+</mat-form-field>
+
+<mat-form-field color="warn">
+  <mat-label> Price max </mat-label>
+  <input
+    matInput
+    name="priceTo"
+    ngModel
+    #pricetoInput="ngModel"
+  >
+</mat-form-field>
+
+<button mat-raised-button color="warn" type="submit">
+  Search
+</button>
+
+<button mat-raised-button color="warn" (click)="login()">
+  Login
+</button>
+<button mat-raised-button color="warn" (click)="register()">
+  Register
+</button>
+
+</mat-card>
+</form>
+
+
+
+<div *ngIf="this.realEstates != null">
+  <div *ngFor="let realEstate of this.realEstates">
+    <mat-card class="example-card">
+      <img mat-card-image src={{realEstate.images[0]}} alt="Photo of Real Estate">
+      <mat-card-content>
+        <strong>
+          {{realEstate.type}}
+        </strong>
+        <p>
+          Town: {{realEstate.town}}
+        </p>
+        <p>
+          Township: {{realEstate.township}}
+        </p>
+        Price:
+        <strong>
+           {{realEstate.price}} &euro;
+        </strong>
+        <p>
+          Room number: {{realEstate.rooms}}
+        </p>
+        <p>
+          Area: {{realEstate.area}}
+        </p>
+        <p>
+          {{realEstate.RentOrSell}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

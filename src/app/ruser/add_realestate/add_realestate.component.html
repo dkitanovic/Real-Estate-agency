@@ -1,0 +1,148 @@
+<form (submit)="submitRealEstate(realEstateForm)" #realEstateForm="ngForm">
+  <mat-card>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Name (description) </mat-label>
+      <input
+
+        matInput
+        name="name"
+        ngModel
+        #nameInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Town </mat-label>
+      <input
+
+        matInput
+        name="town"
+        ngModel
+        #townInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Address </mat-label>
+      <input
+
+        matInput
+        name="address"
+        ngModel
+        #addressInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Township </mat-label>
+      <input
+
+        matInput
+        name="township"
+        ngModel
+        #townshipInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-radio-group  name="type" [(ngModel)]="type" #typeInput="ngModel" color="warn" class="radio1">
+      <mat-radio-button value="House">house </mat-radio-button>
+      <mat-radio-button value="Apartment">apartment</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Floor </mat-label>
+      <input
+
+        matInput
+        name="floor"
+        ngModel
+        #floorInput="ngModel">
+    </mat-form-field>
+
+    <br *ngIf="isSelected(this.type)">
+    <mat-form-field color="warn" class="centered" *ngIf="isSelected(this.type)">
+      <mat-label> Maximum floor </mat-label>
+      <input
+
+        matInput
+        name="maximumFloor"
+        ngModel
+        #maximumFloorInput="ngModel">
+
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Area </mat-label>
+      <input
+
+        matInput
+        name="area"
+        ngModel
+        #areaInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Rooms </mat-label>
+      <input
+        matInput
+        name="rooms"
+        ngModel
+        #roomsInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Price </mat-label>
+      <input
+        matInput
+        name="price"
+        ngModel
+        #priceInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-radio-group  name="furnished" ngModel #furnishedInput="ngModel" color="warn" class="radio2">
+      Furnished: <br><br>
+      <mat-radio-button value="yes">Yes </mat-radio-button>
+      <mat-radio-button value="no">No</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-radio-group  name="owner" ngModel #ownerInput="ngModel" color="warn" class="radio2">
+      Owner: <br><br>
+      <mat-radio-button value="agency">Agency </mat-radio-button>
+      <mat-radio-button value="agent">Agent</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-radio-group  name="RentOrSell" ngModel #RentOrSellInput="ngModel" color="warn" class="radio2">
+      <mat-radio-button value="Rent">Rent </mat-radio-button>
+      <mat-radio-button value="Sell">Sell</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <div>
+      <button mat-stroked-button color="warn" type="button" (click)="uploadPicture.click()">
+        Upload
+      </button>
+      <input name="pictures" ngModel type="file" multiple #uploadPicture (change)="onImagesUploaded($event)">
+    </div>
+
+  </mat-card>
+
+  <button
+    mat-raised-button
+    color="warn"
+    type="submit"
+    class="button"
+  >
+    Submit
+  </button>
+
+  </form>
+  {{this.text}}
+
+

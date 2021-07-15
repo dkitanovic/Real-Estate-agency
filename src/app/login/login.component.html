@@ -1,0 +1,61 @@
+<form (submit)="login(loginForm)" #loginForm="ngForm">
+<mat-card>
+  <mat-form-field color="warn" class="centered">
+    <mat-label>Username</mat-label>
+    <input
+      required
+      matInput
+      name="username"
+      ngModel
+      #usernameInput="ngModel"
+    >
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field color="warn" class="centered">
+    <mat-label>Password</mat-label>
+    <input
+      required
+      matInput
+      name="password"
+      ngModel
+      #passwordInput="ngModel"
+    >
+  </mat-form-field>
+  <p style="text-align: center;">{{text}}</p>
+</mat-card>
+
+<button
+  mat-raised-button
+  color="warn"
+  type="submit"
+  class="login">
+  Log in
+</button>
+</form>
+
+<p style="text-align:center" class="down"> If you don't have account you can register here or continue as guest</p>
+
+<form class="center">
+<button
+  mat-raised-button
+  color="warn"
+  type="submit"
+  style="margin-right: 20px;"
+  (click)="register()"
+>
+  Register
+</button>
+<button
+  mat-raised-button
+  color="warn"
+  type="submit"
+  style="margin-left: 20px;"
+  (click)="continue()"
+>
+  Continue
+</button>
+</form>
+
+

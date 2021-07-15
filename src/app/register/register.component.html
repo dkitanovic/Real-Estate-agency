@@ -1,0 +1,112 @@
+<form (submit)="register(loginForm)" #loginForm="ngForm">
+  <mat-card>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Name </mat-label>
+      <input
+        required
+        matInput
+        name="name"
+        ngModel
+        #nameInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Surname </mat-label>
+      <input
+        required
+        matInput
+        name="surname"
+        ngModel
+        #surnameInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Username </mat-label>
+      <input
+        required
+        matInput
+        name="username"
+        ngModel
+        #usernameInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Password </mat-label>
+      <input
+        required
+        matInput
+        name="password"
+        ngModel
+        #passwordInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Confirm password </mat-label>
+      <input
+        required
+        matInput
+        name="confirmPassword"
+        ngModel
+        #confirmPasswordInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <div>
+      <button mat-stroked-button color="warn" type="button" (click)="uploadPicture.click()">
+        Upload
+      </button>
+      <input name="picture" ngModel type="file" #uploadPicture (change)="onImageUploaded($event)">
+    </div>
+
+    <div class="imagePreview">
+      <img [src]="imagePath">
+    </div>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> E-mail </mat-label>
+      <input
+        required
+        matInput
+        name="email"
+        ngModel
+        #addressInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> State </mat-label>
+      <input
+        required
+        matInput
+        name="state"
+        ngModel
+        #stateInput="ngModel">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field color="warn" class="centered">
+      <mat-label> Town </mat-label>
+      <input
+        required
+        matInput
+        name="town"
+        ngModel
+        #townInput="ngModel">
+    </mat-form-field>
+  </mat-card>
+
+  <button
+    mat-raised-button
+    color="warn"
+    type="submit"
+    class="button"
+  >
+    Register
+  </button>
+  </form>
+  <p style="text-align: center;"> {{text}} </p>

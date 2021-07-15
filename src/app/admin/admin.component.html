@@ -1,0 +1,265 @@
+
+<mat-drawer-container class="example-container">
+
+  <mat-drawer mode="side" position="end" opened>
+    <div class="imagePreview">
+      <img [src]="user.imagePath">
+    </div>
+
+    <div class="center">
+      <p>
+        <a style="color: red"> Name: </a> {{user.name}}
+      </p>
+      <p>
+        <a style="color: red"> Surname: </a> {{user.surname}}
+      </p>
+      <p>
+        <a style="color: red"> Username: </a> {{user.username}}
+      </p>
+      <p>
+        <a style="color: red"> State: </a> {{user.state}}
+      </p>
+      <p>
+        <a style="color: red"> Town: </a> {{user.town}}
+      </p>
+      <p>
+        <a style="color: red"> Email: </a> {{user.email}}
+      </p>
+    </div>
+
+    <div class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill" color="warn">
+        <mat-label>Percentage</mat-label>
+        <input matInput placeholder="10" [(ngModel)]='this.percentage'>
+      </mat-form-field>
+      <button mat-raised-button color="warn" (click)="setPercentage()" class="right_button">
+        Set percentage
+      </button>
+    </div>
+
+    <div class="buttons">
+    <button mat-raised-button color="warn" (click)="add_user()" class="right_button">
+      Add user
+    </button>
+    <button mat-raised-button color="warn" (click)="delete_users()" class="right_button">
+      Delete users
+    </button>
+    <button mat-raised-button color="warn" (click)="show_requests()" class="right_button">
+      User requests
+    </button>
+    <button mat-raised-button color="warn" (click)="add_real_estate()" class="right_button">
+      Add real estate
+    </button>
+    <button mat-raised-button color="warn" (click)="show_real_estate_requests()" class="right_button">
+      Real Estate requests
+    </button>
+    <button mat-raised-button color="warn" (click)="show_sells()" class="right_button">
+      Sells
+    </button>
+    <button mat-raised-button color="warn" (click)="statistic()" class="right_button">
+      Statistic
+    </button>
+
+    <button mat-raised-button color="warn" class="right_button" (click)="logout()">
+      Log out
+    </button>
+    <br>
+
+  </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+
+    <div *ngIf="this.usersAccepted != null && add_User==false && delete_Users==true">
+      <div *ngFor="let user of this.usersAccepted">
+        <mat-card class="example-card">
+          <img mat-card-image src={{user.imagePath}} alt="Photo of User">
+          <mat-card-content>
+            <strong>
+              {{user.type}}
+            </strong>
+            <p>
+              Name: {{user.name}}
+            </p>
+            <p>
+              Surname: {{user.surname}}
+            </p>
+            <p>
+              Username:
+              <strong>
+               {{user.username}}
+              </strong>
+            </p>
+            <p>
+              Password:
+              <strong>
+               {{user.password}}
+              </strong>
+            </p>
+            <p>
+              E-mail: {{user.email}}
+            </p>
+            <p>
+              State: {{user.state}}
+            </p>
+            <p>
+              Town: {{user.town}}
+            </p>
+            <button mat-raised-button color="warn" (click)="deleteUser(user)">
+              Delete
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="this.usersAccepted != null && add_User==false && delete_Users==false && requests_Users==true">
+        <div *ngFor="let user of this.usersNotAccepted">
+          <mat-card class="example-card">
+            <img mat-card-image src={{user.imagePath}} alt="Photo of User">
+            <mat-card-content>
+              <strong>
+                {{user.type}}
+              </strong>
+              <p>
+                Name: {{user.name}}
+              </p>
+              <p>
+                Surname: {{user.surname}}
+              </p>
+              <p>
+                Username:
+                <strong>
+                 {{user.username}}
+                </strong>
+              </p>
+              <p>
+                Password:
+                <strong>
+                 {{user.password}}
+                </strong>
+              </p>
+              <p>
+                E-mail: {{user.email}}
+              </p>
+              <p>
+                State: {{user.state}}
+              </p>
+              <p>
+                Town: {{user.town}}
+              </p>
+              <button mat-raised-button color="warn" (click)="acceptUser(user)">
+                Accept
+              </button>
+
+              <button mat-raised-button color="warn" (click)="deleteUser(user)">
+                Decline
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+    </div>
+
+    <div *ngIf="this.realEstates != null && requests_Real_Estate==true">
+      <div *ngFor="let realEstate of this.realEstates">
+        <mat-card class="example-card" (click)="openRealEstate(realEstate)">
+          <img mat-card-image src={{realEstate.images[0]}} alt="Photo of Real Estate">
+          <mat-card-content>
+            <strong>
+              {{realEstate.type}}
+            </strong>
+            <p>
+              Town: {{realEstate.town}}
+            </p>
+            <p>
+              Township: {{realEstate.township}}
+            </p>
+            Price:
+            <strong>
+               {{realEstate.price}} &euro;
+            </strong>
+            <p>
+              Room number: {{realEstate.rooms}}
+            </p>
+            <p>
+              {{realEstate.RentOrSell}}
+            </p>
+            <button mat-raised-button color="warn" (click)="acceptRealEstate(realEstate)">
+              Accept
+            </button>
+
+            <button mat-raised-button color="warn" (click)="deleteRealEstate(RealEstate)">
+              Decline
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="show_charts==true">
+      <div id="divChart">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <div id="divChart">
+        <canvas id="myChart1"></canvas>
+      </div>
+
+      <div id="divChart">
+        <canvas id="myChart2"></canvas>
+      </div>
+
+      <div id="divChart">
+        <canvas id="myChart3"></canvas>
+      </div>
+    </div>
+
+    <div *ngIf="this.offers != null && this.show_offers==true">
+      <div *ngFor="let offer of this.offers">
+        <mat-card class="example-card">
+          <img mat-card-image src={{offer.buyerImage}} alt="Photo of buyer">
+          <mat-card-content>
+            <p>
+              Name:
+              <strong>
+                {{offer.name}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Owner username:
+              <strong>
+                {{offer.usernameOwner}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Buyer username:
+              <strong>
+                {{offer.usernameBuyer}}
+              </strong>
+              <br>
+            </p>
+            <p>
+              Price:
+              <strong>
+                {{offer.price}}
+              </strong>
+            </p>
+            <br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      Ukupna zarada je {{calculateMoney()}}
+    </div>
+
+    <app-admin-add_user *ngIf="add_User==true"></app-admin-add_user>
+    <app-admin-add_realestate *ngIf="add_Real_Estate==true"></app-admin-add_realestate>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
+
+
+
+
